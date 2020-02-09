@@ -1,0 +1,32 @@
+{
+  "name": "frac",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start:dev": "webpack-dev-server",
+    "build:dev": "webpack",
+    "lint": "tslint './src/**/*.ts'",
+    "lint:fix": "tslint './src/**/*.ts' --fix",
+    "prettier": "prettier --config ./.prettierrc --write './src/**/*.ts'",
+    "prettier:check": "prettier --config ./.prettierrc --check './src/**/*.ts'",
+    "format": "npm run prettier && npm run lint:fix"
+  },
+  "author": "Michał Podwórny",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.1.0",
+    "ts-loader": "^6.1.0",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.2",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "peerDependencies": {}
+}
