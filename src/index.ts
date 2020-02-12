@@ -3,10 +3,9 @@ class Color3 {
 }
 const color3 = (r: number, g: number, b: number) => new Color3(r, g, b);
 
-const DOMAIN_START_X = -2.5;
-const DOMAIN_END_X = 1;
-const DOMAIN_START_Y = -1;
-const DOMAIN_END_Y = 1;
+const DOMAIN_CENTER_X = -0.5;
+const DOMAIN_CENTER_Y = 0;
+const DOMAIN_SIZE_Y = 2;
 const MAX_ITERATIONS = 512;
 const MAX_ITERATIONS_LOG = Math.log(MAX_ITERATIONS);
 
@@ -62,12 +61,21 @@ const mandelbrotPixels = function*(width: number, height: number) {
   let i = 0;
   const pixelCount = width * height;
 
+  const domainStartY = DOMAIN_CENTER_Y - DOMAIN_SIZE_Y / 2;
+  const domainEndY = DOMAIN_CENTER_Y + DOMAIN_SIZE_Y / 2;
+
+  const heightToWidthRatio = height / width;
+
+  const domainSizeX = DOMAIN_SIZE_Y / heightToWidthRatio;
+  const domainStartX = DOMAIN_CENTER_X - domainSizeX / 2;
+  const domainEndX = DOMAIN_CENTER_X + domainSizeX / 2;
+
   while (i < pixelCount) {
     const pixY = Math.floor(i / width);
     const pixX = i - pixY * width;
 
-    const scaledX = scaleDomain(0, width - 1, DOMAIN_START_X, DOMAIN_END_X, pixX);
-    const scaledY = scaleDomain(0, height - 1, DOMAIN_START_Y, DOMAIN_END_Y, pixY);
+    const scaledX = scaleDomain(0, width - 1, domainStartX, domainEndX, pixX);
+    const scaledY = scaleDomain(0, height - 1, domainStartY, domainEndY, pixY);
 
     const check = mandelbrotCheck(scaledX, scaledY);
     const color = mandelbrotColor(check);
